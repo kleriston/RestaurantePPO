@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Carrinho</title>
+    </h:head>
+    <h:body>
+
+        <ui:include src="MenuPrincipal.xhtml"/>
+
+        <h:form id="FormularioVenda">
+
+
+            <p:growl id="groVenda" sticky="false" life="3000"/>
+
+            <p:button value="Voltar" outcome="index.xhtml"/>
+            <p:dataTable id="TabelaVenda" value="#{vendaBean.listaItens}" var="itens" emptyMessage="Adicione Aqui Seus Produtos!">
+
+                <f:facet name="header">
+                    <h3>Resumo Final da Venda</h3>
+
+                </f:facet>
+
+
+                  <p:column headerText="Produto">
+                        <p:graphicImage id="idimg" url="#{itens.produto.foto}"  height="75" width="150"/>
+                    </p:column>
+                
+                <p:column headerText="Nome">
+                    <h:outputText value="#{itens.produto.nome}"/>
+                </p:column>
+
+                <p:column headerText="Código">
+                    <h:outputText value="#{itens.produto.codigo}"/>
+                </p:column>
+
+                 <p:column headerText="Valor Unitário">
+                    <h:outputText value="#{ProdutoBean.formatarFloat(itens.produto.preço)}"/>
+
+                </p:column>
+                <p:column headerText="Quantidade">
+                    <h:outputText value="#{itens.quantidade}"/>
+                </p:column>
+
+                 <p:column headerText="Valor Parcial">
+                    <h:outputText value="#{ProdutoBean.formatarFloat(itens.precoVenda)}"/>
+                </p:column>
+
+                <p:column headerText="Remover">
+                    <p:commandButton icon="ui-icon-trash" actionListener="#{vendaBean.remover(itens)}"
+                                     update=":FormularioVenda: TabelaVenda :FormularioValor: "
+                                     onclick="window.location.reload(true);"/>
+
+
+                </p:column>
+
+
+            </p:dataTable>
+
+
+
+
+
+        </h:form>
+        <p:separator/>
+        <h:form id="FormularioValor">
+
+            <p:panelGrid columns="2">
+                <h:outputText id="idvalortotal" value="Valor Total: #{vendaBean.formatarFloat(vendaBean.vendaCadastro.valorTotal)}"/>
+                <p:commandButton value="Efetuar Pedido" actionListener="#{vendaBean.carregarDadosVenda()}"
+                                 oncomplete="PF('widDial').show();"
+                                 update=":FormularioDial"/>
+            </p:panelGrid>
+        </h:form >
+
+        <p:dialog id="IdDialogo" visible="false"
+                  widgetVar="widDial">
+
+            <f:facet name="header"> 
+                Atenção!
+            </f:facet>
+
+            <h:form id="FormularioDial">
+
+                <h:panelGrid id="idPainelDial" columns="2">
+
+                    <h:outputText value="CPF"></h:outputText>
+                    <p:inputMask value="#{cpf}" mask="999.999.999-99" converter="Conversor"/>
+
+
+                    <h:outputText value="Senha"></h:outputText>
+                    <p:inputText type="password" value="#{senha}"/>
+
+
+                </h:panelGrid>
+                <p:commandButton value="Entrar" action="#{controleLogin.realizarLogin(cpf, senha)}"/>
+                <p:commandButton value="Cadastrar-se" action="CadastrarClientes.xhtml"/>
+
+
+
+            </h:form>
+
+        </p:dialog>
+
+
+
+    </h:body>
+</html>
+

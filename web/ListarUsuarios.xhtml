@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Funcionários Cadastrados</title>
+    </h:head>
+    <h:body>
+        <ui:include src="Menu.xhtml"/>
+       <p:growl id="gro" sticky="false" life="3000"/>
+        <h:form id="formulario">
+             
+             <p:commandButton value="Cadastrar" oncomplete="PF('widCadastro').show()"/>
+        
+             <p:dataTable id="tabela" value="#{FuncionarioBean.recuperarTodos()}" var="funcionario"
+                         paginator="true" rows="10" rowKey="#{funcionario.id}" emptyMessage="Funcionário Não Encontrado!"
+                         >
+            <f:facet name="header">
+                    Funcionários Cadastrados
+                </f:facet>
+                
+                <p:column headerText="Nome" filterBy="#{funcionario.nome}">
+                <h:outputText value="#{funcionario.nome}"/>
+                </p:column>
+            <p:column headerText="CPF">
+                <h:outputText value="#{funcionario.cpf}"/>
+                </p:column>
+                
+                
+                <p:column headerText="Operações">
+                    
+                      
+                     
+                    <p:commandButton icon="ui-icon-search" oncomplete="PF('widDial').show()"
+                        update=":formulario:dial">
+                        <f:setPropertyActionListener target="#{FuncionarioBean.funcionario}" value="#{funcionario}"/>
+                    </p:commandButton>
+                  
+                    
+                    
+                    <p:commandButton icon="ui-icon-pencil" oncomplete="PF('widAltera').show()" update=":dialAltera">
+                        <f:setPropertyActionListener target="#{FuncionarioBean.funcionario}" value="#{funcionario}"/>
+                    </p:commandButton>
+                    
+                    
+                    
+                    <p:commandButton icon="ui-icon-trash" oncomplete="PF('widDial2').show()">
+                        <f:setPropertyActionListener target="#{FuncionarioBean.funcionario}" value="#{funcionario}"/>
+                    </p:commandButton>
+                </p:column>
+            
+            </p:dataTable>
+        
+        <p:dialog id="dial" visible="false" resizable="false" modal="true"
+                      widgetVar="widDial">
+            
+            <f:facet name="header">
+                    Funcionário!!!
+                </f:facet>
+                <p:panelGrid columns="2">
+                    <h:outputText value="Nome"/>
+                    <h:outputText value="#{FuncionarioBean.funcionario.nome}"/>
+                    
+                    <h:outputText value="CPF"/>
+                    <h:outputText value="#{FuncionarioBean.funcionario.cpf}"/>
+                    
+                   
+                    
+                </p:panelGrid>
+                <p:commandButton value="OK" oncomplete="PF('widDial').hide()"/>
+            </p:dialog>
+        
+          
+              <p:confirmDialog id="dial2" visible="false" message="Deseja Realmente Excluir Este Funcionário?"
+                widgetVar="widDial2">
+                    <f:facet name="header">
+                    Atenção!!!
+                </f:facet>
+                  
+                  <p:commandButton value="Sim" action="#{FuncionarioBean.excluir()}"
+                                 oncomplete="PF('widDial2').hide()" update="formulario"/>
+                <p:commandButton value="Não" oncomplete="PF('widDial2').hide()"/>
+            </p:confirmDialog>
+        
+        </h:form>
+        
+         <p:dialog id="dialAltera" resizable="false" visible="false" modal="true" widgetVar="widAltera">
+             <f:facet name="header">
+                    Atenção!!!
+                </f:facet>
+            <h:form>
+                <p:panelGrid columns="2">
+                    <h:outputText value="Nome"/>
+                    <p:inputText value="#{FuncionarioBean.funcionario.nome}"/>
+                    
+                    <h:outputText value="CPF"/>
+                    <h:outputText value="#{FuncionarioBean.funcionario.cpf}"/>
+                    
+                    <h:outputText value="Senha"/>
+                    <p:inputText  type="password" value="#{FuncionarioBean.funcionario.senha}"/>
+                    
+                   
+                </p:panelGrid>
+                <p:commandButton value="Alterar" action="#{FuncionarioBean.alterar()}" 
+                                 oncomplete="PF('widAltera').hide()" update=":formulario"/>
+                <p:commandButton value="Cancelar" oncomplete="PF('widAltera').hide()"/>
+            </h:form>
+        </p:dialog>
+        
+         <p:dialog id="dialCadastro" resizable="false" visible="false" modal="true" widgetVar="widCadastro">
+            <f:facet name="header">
+                    Cadastrar Funcionário!!!
+                </f:facet>
+              <h:form>
+                <p:panelGrid columns="2">
+                    
+                    <h:outputText value="Nome"/>
+                    <p:inputText value="#{FuncionarioBean.funcionario.nome}"/>
+                    
+                    <h:outputText value="CPF"/>
+                    <p:inputMask value="#{FuncionarioBean.funcionario.cpf}" mask="999.999.999-99" converter="Conversor"/>
+                    
+                    
+                    <h:outputText value="Senha"/>
+                    <p:inputText type="password" value="#{FuncionarioBean.funcionario.senha}"/>
+                   
+                </p:panelGrid>
+                  <p:commandButton value="Cadastrar" action="#{FuncionarioBean.inserir()}" 
+                                 oncomplete="location.href='ListarUsuarios.xhtml'" update=":formulario"/>
+                <p:commandButton value="Cancelar" oncomplete="PF('widCadastro').hide()"/>
+            </h:form>
+        </p:dialog>
+        
+    </h:body>
+</html>
+

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        
+        <title>Menu</title>
+    </h:head>
+    <h:body>
+        
+        <c:if test="${controleLogin.funcionarioLogado==null}">
+                <script>
+                    location.href="index.xhtml";
+                </script>
+            </c:if>
+        <p:fieldset legend="O Velho Nordestino!!!" >
+            
+      
+        <h:form id="formularioMenu">
+             
+       <p:menubar>
+           <p:menuitem value="Início" outcome="VendaCadastro.xhtml"/>  
+                
+            <p:menuitem value="Abrir-Mesas" outcome="Mesas.xhtml"/>  
+             
+                   
+                   <p:submenu label="Produtos">
+                        <p:menuitem value="Categorias" outcome="TipoProduto.xhtml"/>                          
+                     <p:menuitem value="Apresentar" outcome="ListarProdutos.xhtml"/>  
+  
+                       </p:submenu> 
+                   
+                    <p:submenu label="Funcionários">
+                    
+                        <p:menuitem value="Apresentar" outcome="ListarUsuarios.xhtml" />
+                          
+                        
+                     </p:submenu>
+           
+                        <p:submenu label="Clientes">
+                    
+                        <p:menuitem value="Apresentar" outcome="ListarClientes.xhtml" />
+                          
+                        
+                     </p:submenu>
+
+                   
+                 
+                       
+                          <p:menuitem value="Relatórios" outcome="Relatorio.xhtml"/>  
+                        
+                  
+ 
+             
+             <p:menuitem value="Pedidos" outcome="ListarVendas.xhtml"/>  
+             
+               <p:submenu label="Mesas">
+                    
+                        <p:menuitem value="Apresentar" outcome="ListarMesas.xhtml" />
+                          
+                        
+                     </p:submenu>
+          
+                   
+                   
+           <p:submenu label="#{controleLogin.funcionarioLogado.nome}" style="position: absolute; right: 0px">
+               <p:menuitem value="Sair" action="#{controleLogin.sair()}"/>
+                   </p:submenu>
+               </p:menubar>
+       </h:form>
+              </p:fieldset>
+    </h:body>
+</html>
+

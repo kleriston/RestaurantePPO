@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Clientes Cadastrados</title>
+    </h:head>
+    <h:body>
+        <ui:include src="Menu.xhtml"/>
+        <p:growl id="gro" sticky="false" life="3000"/>
+        <h:form id="formulario">
+   <p:growl id="grdo" sticky="false" life="6000"/>
+            <p:commandButton value="Cadastrar" oncomplete="PF('widCadastro').show()"/>
+
+            <p:dataTable id="tabela" value="#{ClienteBean.recuperarTodos()}" var="cliente"
+                         paginator="true" rows="10" rowKey="#{cliente.id}" emptyMessage="Cliente Não Encontrado!"
+                         >
+                <f:facet name="header">
+                    Clientes Cadastrados
+                </f:facet>
+
+                <p:column headerText="Nome" filterBy="#{cliente.nome}">
+                    <h:outputText value="#{cliente.nome}"/>
+                </p:column>
+
+                <p:column headerText="RG">
+                    <h:outputText value="#{cliente.rg}"/>
+                </p:column>
+
+                <p:column headerText="CPF" filterBy="#{cliente.cpf}">
+                    <h:outputText value="#{cliente.cpf}"/>
+                </p:column>
+
+
+                <p:column headerText="Operações">
+
+
+
+                    <p:commandButton icon="ui-icon-search" oncomplete="PF('widDial').show()"
+                                     update=":formulario:dial">
+                        <f:setPropertyActionListener target="#{ClienteBean.cliente}" value="#{cliente}"/>
+                    </p:commandButton>
+
+
+
+                    <p:commandButton icon="ui-icon-pencil" oncomplete="PF('widAltera').show()" update=":dialAltera">
+                        <f:setPropertyActionListener target="#{ClienteBean.cliente}" value="#{cliente}"/>
+                    </p:commandButton>
+
+
+
+                    <p:commandButton icon="ui-icon-trash" oncomplete="PF('widDial2').show()">
+                        <f:setPropertyActionListener target="#{ClienteBean.cliente}" value="#{cliente}"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <p:dialog id="dial" visible="false" resizable="false" modal="true"
+                      widgetVar="widDial">
+                <p:panelGrid columns="2">
+
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            Cliente!
+                        </f:facet>
+
+
+                        <h:outputText value="Nome"/>
+                        <h:outputText value="#{ClienteBean.cliente.nome}"/>
+
+                      
+                        <h:outputText value="CPF"/>
+                        <h:outputText value="#{ClienteBean.cliente.cpf}"/>
+
+                        <h:outputText value="RG"/>
+                        <h:outputText value="#{ClienteBean.cliente.rg}"/>
+
+                        <h:outputText value="Telefone Residencial"/>
+                        <h:outputText value="#{ClienteBean.cliente.fone1}"/>
+
+
+                        <h:outputText value="Telefone Celular"/>
+                        <h:outputText value="#{ClienteBean.cliente.fone2}"/>
+
+                        <h:outputText value="Email"/>
+                        <h:outputText value="#{ClienteBean.cliente.email}"/>
+
+                    </p:panelGrid>
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            Endereço!
+                        </f:facet>
+
+                        <h:outputText value="Logradouro"/>
+                        <h:outputText value="#{ClienteBean.cliente.endereco.logradouro}"/>
+
+                        <h:outputText value="Bairro"/>
+                        <h:outputText value="#{ClienteBean.cliente.endereco.bairro}"/>
+
+                        <h:outputText value="N°"/>
+                        <h:outputText value="#{ClienteBean.cliente.endereco.numero}"/>
+
+                        <h:outputText value="Ponto de Referência"/>
+                        <h:outputText value="#{ClienteBean.cliente.endereco.referencia}"/>
+
+                        <h:outputText value="CEP"/>
+                        <h:outputText value="#{ClienteBean.cliente.endereco.cep}"/>
+
+                        <h:outputText value="Cidade"/>
+                        <h:outputText value="#{ClienteBean.cliente.endereco.cidade}"/>
+
+
+                    </p:panelGrid>
+                </p:panelGrid>
+                <p:commandButton value="OK" oncomplete="PF('widDial').hide()"/>
+            </p:dialog>
+
+
+            <p:confirmDialog id="dial2" visible="false" message="Deseja Realmente Excluir Este Cliente?"
+                             widgetVar="widDial2">
+                <f:facet name="header">
+                    Atenção!!!
+                </f:facet>
+
+                <p:commandButton value="Sim" action="#{ClienteBean.excluir()}"
+                                 oncomplete="PF('widDial2').hide()" update="formulario"/>
+                <p:commandButton value="Não" oncomplete="PF('widDial2').hide()"/>
+            </p:confirmDialog>
+
+        </h:form>
+
+        <p:dialog id="dialAltera" resizable="false" visible="false" modal="true" widgetVar="widAltera">
+
+
+
+            <f:facet name="header">
+                Atenção!!!
+            </f:facet>
+
+            <h:form>
+                <p:panelGrid columns="2">
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            Cliente!
+                        </f:facet>
+                        <h:outputText value="Nome"/>
+                        <p:inputText value="#{ClienteBean.cliente.nome}"/>
+
+
+                        <h:outputText value="RG"/>
+                        <p:inputMask  value="#{ClienteBean.cliente.rg}" mask="9.999.999" converter="Conversor"/>
+
+
+                        <h:outputText value="CPF"/>
+                        <p:inputMask  value="#{ClienteBean.cliente.cpf}" mask="999.999.999-99" converter="Conversor"/>
+
+
+                        <h:outputText value="Telefone Residencial"/>
+                        <p:inputMask  value="#{ClienteBean.cliente.fone1}" mask="(99)9999-9999" converter="Conversor"/>
+
+                        <h:outputText value="Telefone Celular"/>
+                        <p:inputMask value="#{ClienteBean.cliente.fone2}" mask="(99)99999-9999" converter="Conversor"/>
+
+                        <h:outputText value="Email"/>
+                        <p:inputText value="#{ClienteBean.cliente.email}"/>
+
+                        
+                    </p:panelGrid>
+
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            Endereço!
+                        </f:facet>
+                        <h:outputText value="Logradouro"/>
+                        <p:inputText value="#{ClienteBean.cliente.endereco.logradouro}"/>
+
+
+                        <h:outputText value="Bairro"/>
+                        <p:inputText value="#{ClienteBean.cliente.endereco.bairro}"/>
+
+                        <h:outputText value="N°"/>
+                        <p:inputText value="#{ClienteBean.cliente.endereco.numero}"/>
+
+                        <h:outputText value="Ponto de Referência"/>
+                        <p:inputText value="#{ClienteBean.cliente.endereco.referencia}"/>
+
+
+                        <h:outputText value="CEP"/>
+                        <p:inputMask value="#{ClienteBean.cliente.endereco.cep}" mask="99999-999" converter="Conversor"/>
+
+                        <h:outputText value="Cidade"/>
+                        <p:inputText value="#{ClienteBean.cliente.endereco.cidade}"/>
+
+
+                    </p:panelGrid>
+                </p:panelGrid>
+                <p:commandButton value="Alterar" action="#{ClienteBean.altera()}" 
+                                 oncomplete="PF('widAltera').hide()" update=":formulario"/>
+                <p:commandButton value="Cancelar" oncomplete="PF('widAltera').hide()"/>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog id="dialCadastro" resizable="false" visible="false" modal="true" widgetVar="widCadastro">
+          
+            <f:facet name="header">
+                Cadastrar Cliente!!!
+            </f:facet>
+            <h:form>
+                <p:panelGrid columns="2">
+                    <p:panelGrid columns="2">
+
+                        <f:facet name="header">
+                            Dados Pessoais!
+                        </f:facet>
+
+                        <h:outputText value="Nome"/>
+                        <p:inputText value="#{ClienteBean.cliente.nome}"/>
+
+                        <h:outputText value="RG"/>
+                        <p:inputMask value="#{ClienteBean.cliente.rg}" mask="9.999.999" converter="Conversor"/>
+
+                        <h:outputText value="CPF"/>
+                        <p:inputMask value="#{ClienteBean.cliente.cpf}" mask="999.999.999-99" converter="Conversor"/>
+
+                        <h:outputText value="Telefone Residencial"/>
+                        <p:inputMask value="#{ClienteBean.cliente.fone1}" mask="(99)9999-9999" converter="Conversor"/>
+
+                        <h:outputText value="Telefone Celular"/>
+                        <p:inputMask value="#{ClienteBean.cliente.fone2}" mask="(99)99999-9999" converter="Conversor"/>
+
+                        <h:outputText value="Email"/>
+                        <p:inputText value="#{ClienteBean.cliente.email}"/>
+
+                        <h:outputText value="Senha"/>
+                        <p:inputText type="password" value="#{ClienteBean.cliente.senha}"/>
+                        
+                        <h:outputText value="Confirmar Senha"/>
+                        <p:inputText type="password" value="#{ClienteBean.confirma}"/>
+                    </p:panelGrid>
+
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            Endereço!
+                        </f:facet>
+                        <h:outputText value="Logradouro"/>
+                        <p:inputText value="#{ClienteBean.endereco.logradouro}"/>
+
+                        <h:outputText value="Bairro"/>
+                        <p:inputText value="#{ClienteBean.endereco.bairro}"/>
+
+
+                        <h:outputText value="N°"/>
+                        <p:inputText value="#{ClienteBean.endereco.numero}"/>
+
+                        <h:outputText value="Ponto de Referência"/>
+                        <p:inputText value="#{ClienteBean.endereco.referencia}"/>
+
+
+                        <h:outputText value="CEP"/>
+                        <p:inputMask value="#{ClienteBean.endereco.cep}" mask="99999-999"/>
+
+                        <h:outputText value="Cidade"/>
+                        <p:inputText value="#{ClienteBean.endereco.cidade}"/>
+                    </p:panelGrid> 
+
+
+
+
+                </p:panelGrid>
+                <p:commandButton value="Cadastrar" action="#{ClienteBean.inserir()}" 
+                                 oncomplete="PF('widCadastro').hide()" update=":formulario: "/>
+                <p:commandButton value="Cancelar" oncomplete="PF('widCadastro').hide()"/>
+            </h:form>
+        </p:dialog>
+
+    </h:body>
+</html>
+
