@@ -29,7 +29,7 @@
 
 
 
-                    <p:inputText value="#{busca}" style="width: 100%"/>
+                    <p:inputText id="busca" value="#{busca}" style="width: 100%"/>
                     <p:commandButton value="Buscar" actionListener="#{ProdutoBean.recuperaBusca(busca)}"
                                      update="form: cars: teste"  >
                         <f:setPropertyActionListener target="#{ProdutoBean.produto}" value="#{produtos}"/>
