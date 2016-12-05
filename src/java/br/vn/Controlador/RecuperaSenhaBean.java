@@ -6,23 +6,11 @@
 package br.vn.Controlador;
 
 import br.vn.Model.Cliente;
-import br.vn.Model.Filtros.Email;
 import br.vn.Model.Repositorio.RepositorioCliente;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.ImageHtmlEmail;
-import org.apache.commons.mail.SimpleEmail;
-import org.apache.commons.mail.resolver.DataSourceUrlResolver;
 
 /**
  *
