@@ -44,37 +44,37 @@ public class RecuperaSenhaBean {
 
     }
 
-    public String envia(String emailCliente) {
-
-        c = repCliente.recuperaEmail();
-        for (int i = 0; i < c.size(); i++) {
-            if (c.get(i).getEmail().equals(emailCliente)) {
-
-                try {
-                    SimpleEmail email = new SimpleEmail();
-                    email.setHostName("smtp.googlemail.com");
-                    email.setSmtpPort(465);
-                    email.setAuthentication("Kleriston.firmino@gmail.com", "cavalo15");
-                    email.setSSLOnConnect(true);
-                    email.setFrom("teste.ads@gmail.com");
-                    email.setSubject("Recuperar Senha");
-                    email.setMsg("Atenção: " + c.get(i).getNome() + " Para Recuperar Sua Senha Click Aqui ===>" + "http://localhost:8084/Restaurante/faces/faces/RecuperarSenha.xhtml");
-                    email.addTo(emailCliente);
-
-                    email.send();
-                } catch (EmailException ex) {
-                    Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Atenção! "
-                        + " Em Instantes Você Receberá Um Email Com as Instruções Para Recuperar Sua Senha!"));
-                return "/index.xhtml";
-            }
-
-        }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Atenção! "
-                + " Email Incorreto!"));
-        return "/EnviarEmail.xhtml";
-    }
+//    public String envia(String emailCliente) {
+//
+//        c = repCliente.recuperaEmail();
+//        for (int i = 0; i < c.size(); i++) {
+//            if (c.get(i).getEmail().equals(emailCliente)) {
+//
+//                try {
+//                    SimpleEmail email = new SimpleEmail();
+//                    email.setHostName("smtp.googlemail.com");
+//                    email.setSmtpPort(465);
+//                    email.setAuthentication("Kleriston.firmino@gmail.com", "cavalo15");
+//                    email.setSSLOnConnect(true);
+//                    email.setFrom("teste.ads@gmail.com");
+//                    email.setSubject("Recuperar Senha");
+//                    email.setMsg("Atenção: " + c.get(i).getNome() + " Para Recuperar Sua Senha Click Aqui ===>" + "http://localhost:8084/Restaurante/faces/faces/RecuperarSenha.xhtml");
+//                    email.addTo(emailCliente);
+//
+//                    email.send();
+//                } catch (EmailException ex) {
+//                    Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Atenção! "
+//                        + " Em Instantes Você Receberá Um Email Com as Instruções Para Recuperar Sua Senha!"));
+//                return "/index.xhtml";
+//            }
+//
+//        }
+//        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Atenção! "
+//                + " Email Incorreto!"));
+//        return "/EnviarEmail.xhtml";
+//    }
 
     public String getEmailCliente() {
         return emailCliente;

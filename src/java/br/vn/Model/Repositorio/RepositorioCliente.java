@@ -38,11 +38,11 @@ public class RepositorioCliente {
         return DaoManagerHiber.getInstance().recover("from cliente");
     }
     
-    public Cliente recuperar(long cpf, String senha) throws NoSuchAlgorithmException{
+    public Cliente recuperar(String email, String senha) throws NoSuchAlgorithmException{
         Cliente cliente = null;
          
         
-          List<Cliente> lista = ((List<Cliente>)DaoManagerHiber.getInstance().recover("from cliente where cpf='"+cpf+"' and "
+          List<Cliente> lista = ((List<Cliente>)DaoManagerHiber.getInstance().recover("from cliente where email='"+email+"' and "
                 + "senha='"+senha+"'"));
           
           if(lista.size()>0){

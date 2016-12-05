@@ -37,8 +37,8 @@
             <p:dialog id="dial2"  visible="false" resizable="false" modal="true" widgetVar="widDial2">
 
                 <p:panelGrid columns="2">
-                    <h:outputText value="CPF"></h:outputText>
-                    <p:inputMask value="#{cpf}" mask="999.999.999-99" converter="Conversor"/>
+                    <h:outputText value="Email"></h:outputText>
+                    <p:inputText value="#{email}"/>
 
 
                     <h:outputText value="Senha"></h:outputText>
@@ -46,13 +46,12 @@
 
                 </p:panelGrid>
 
-                <p:commandButton value="Entrar" action="#{controleLogin.realizarLogin(cpf, senha)}"
+                <p:commandButton value="Entrar" action="#{controleLogin.realizarLogin(email, senha)}"
                                  update="formulario1"/>
                 <p:commandButton value="Cancelar" update="formulario1"/>
                 <p:separator/>
 
-                <p:button value="Esqueci Minha Senha" outcome="EnviarEmail.xhtml"/>
-
+             
             </p:dialog>
 
 
@@ -70,7 +69,7 @@
                     <p:inputText value="#{FuncionarioBean.funcionario.nome}"/>
                     
                     <h:outputText value="CPF"/>
-                    <p:inputMask value="#{FuncionarioBean.funcionario.cpf}" mask="999.999.999-99" converter="Conversor"/>
+                    <p:inputText value="#{FuncionarioBean.funcionario.email}" />
                     
                     
                     <h:outputText value="Senha"/>
@@ -99,12 +98,7 @@
                         <h:outputText value="Nome"/>
                         <p:inputText value="#{ClienteBean.cliente.nome}"/>
 
-                        <h:outputText value="RG"/>
-                        <p:inputMask value="#{ClienteBean.cliente.rg}" mask="9.999.999" converter="Conversor"/>
-
-                        <h:outputText value="CPF"/>
-                        <p:inputMask value="#{ClienteBean.cliente.cpf}" mask="999.999.999-99" converter="Conversor"/>
-
+                    
                         <h:outputText value="Telefone Residencial"/>
                         <p:inputMask value="#{ClienteBean.cliente.fone1}" mask="(99)9999-9999" converter="Conversor"/>
 

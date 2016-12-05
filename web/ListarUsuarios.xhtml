@@ -25,8 +25,8 @@
                 <p:column headerText="Nome" filterBy="#{funcionario.nome}">
                 <h:outputText value="#{funcionario.nome}"/>
                 </p:column>
-            <p:column headerText="CPF">
-                <h:outputText value="#{funcionario.cpf}"/>
+            <p:column headerText="Email">
+                <h:outputText value="#{funcionario.email}"/>
                 </p:column>
                 
                 
@@ -64,8 +64,8 @@
                     <h:outputText value="Nome"/>
                     <h:outputText value="#{FuncionarioBean.funcionario.nome}"/>
                     
-                    <h:outputText value="CPF"/>
-                    <h:outputText value="#{FuncionarioBean.funcionario.cpf}"/>
+                    <h:outputText value="Email"/>
+                    <h:outputText value="#{FuncionarioBean.funcionario.email}"/>
                     
                    
                     
@@ -96,8 +96,8 @@
                     <h:outputText value="Nome"/>
                     <p:inputText value="#{FuncionarioBean.funcionario.nome}"/>
                     
-                    <h:outputText value="CPF"/>
-                    <h:outputText value="#{FuncionarioBean.funcionario.cpf}"/>
+                    <h:outputText value="Email"/>
+                    <h:outputText value="#{FuncionarioBean.funcionario.email}"/>
                     
                     <h:outputText value="Senha"/>
                     <p:inputText  type="password" value="#{FuncionarioBean.funcionario.senha}"/>
@@ -120,8 +120,8 @@
                     <h:outputText value="Nome"/>
                     <p:inputText value="#{FuncionarioBean.funcionario.nome}"/>
                     
-                    <h:outputText value="CPF"/>
-                    <p:inputMask value="#{FuncionarioBean.funcionario.cpf}" mask="999.999.999-99" converter="Conversor"/>
+                    <h:outputText value="Email"/>
+                    <p:inputText value="#{FuncionarioBean.funcionario.email}"/>
                     
                     
                     <h:outputText value="Senha"/>

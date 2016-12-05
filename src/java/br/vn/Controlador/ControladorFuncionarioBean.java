@@ -52,8 +52,8 @@ public class ControladorFuncionarioBean {
         
     }
     
-    public Funcionario recuperar(long cpf,String senha){
-        return repFuncionario.recuperar(cpf, senha);
+    public Funcionario recuperar(String email,String senha){
+        return repFuncionario.recuperar(email, senha);
     }
     
     public void alterar(){

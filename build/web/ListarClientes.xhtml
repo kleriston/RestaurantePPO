@@ -26,13 +26,7 @@
                     <h:outputText value="#{cliente.nome}"/>
                 </p:column>
 
-                <p:column headerText="RG">
-                    <h:outputText value="#{cliente.rg}"/>
-                </p:column>
-
-                <p:column headerText="CPF" filterBy="#{cliente.cpf}">
-                    <h:outputText value="#{cliente.cpf}"/>
-                </p:column>
+         
 
 
                 <p:column headerText="Operações">
@@ -73,11 +67,7 @@
                         <h:outputText value="#{ClienteBean.cliente.nome}"/>
 
                       
-                        <h:outputText value="CPF"/>
-                        <h:outputText value="#{ClienteBean.cliente.cpf}"/>
-
-                        <h:outputText value="RG"/>
-                        <h:outputText value="#{ClienteBean.cliente.rg}"/>
+                       
 
                         <h:outputText value="Telefone Residencial"/>
                         <h:outputText value="#{ClienteBean.cliente.fone1}"/>
@@ -151,14 +141,7 @@
                         <p:inputText value="#{ClienteBean.cliente.nome}"/>
 
 
-                        <h:outputText value="RG"/>
-                        <p:inputMask  value="#{ClienteBean.cliente.rg}" mask="9.999.999" converter="Conversor"/>
-
-
-                        <h:outputText value="CPF"/>
-                        <p:inputMask  value="#{ClienteBean.cliente.cpf}" mask="999.999.999-99" converter="Conversor"/>
-
-
+                    
                         <h:outputText value="Telefone Residencial"/>
                         <p:inputMask  value="#{ClienteBean.cliente.fone1}" mask="(99)9999-9999" converter="Conversor"/>
 
@@ -220,12 +203,7 @@
                         <h:outputText value="Nome"/>
                         <p:inputText value="#{ClienteBean.cliente.nome}"/>
 
-                        <h:outputText value="RG"/>
-                        <p:inputMask value="#{ClienteBean.cliente.rg}" mask="9.999.999" converter="Conversor"/>
-
-                        <h:outputText value="CPF"/>
-                        <p:inputMask value="#{ClienteBean.cliente.cpf}" mask="999.999.999-99" converter="Conversor"/>
-
+                  
                         <h:outputText value="Telefone Residencial"/>
                         <p:inputMask value="#{ClienteBean.cliente.fone1}" mask="(99)9999-9999" converter="Conversor"/>
 

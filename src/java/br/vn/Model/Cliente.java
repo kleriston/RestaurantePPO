@@ -26,22 +26,18 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-     @Column(length = 150)
+    @Column(length = 150)
     private String nome;
-    @Column(length = 10, unique = true)
-    private long rg;
-     @Column(length = 14, unique = true)
-    private long cpf;
-     @Column(length = 16)
+
+    @Column(length = 16)
     private String fone1;
-     @Column(length = 16)
+    @Column(length = 16)
     private String fone2;
-     @Column(length = 40, unique = true)
+    @Column(length = 40, unique = true)
     private String email;
-     @Column
-     private String senha;
-    
-    
+    @Column
+    private String senha;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
@@ -49,11 +45,10 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente(String nome, long rg, long cpf, Endereco endereco, 
+    public Cliente(String nome, Endereco endereco,
             String fone1, String fone2, String email, String senha) {
         this.nome = nome;
-        this.rg = rg;
-        this.cpf = cpf;
+      
         this.endereco = endereco;
         this.fone1 = fone1;
         this.fone2 = fone2;
@@ -69,24 +64,20 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
- 
-
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) throws NoSuchAlgorithmException{
-          MessageDigest md = MessageDigest.getInstance("MD5");
-        
+    public void setSenha(String senha) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+
         BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
         this.senha = String.format("%32x", hash);
-        
+
     }
 
-   
-
     public Endereco getEndereco() {
-        if(endereco == null){
+        if (endereco == null) {
             endereco = new Endereco();
         }
         return endereco;
@@ -104,23 +95,6 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public long getRg() {
-        return rg;
-    }
-
-    public void setRg(long rg) {
-        this.rg = rg;
-    }
-
-    public long getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(long cpf) {
-        this.cpf = cpf;
-    }
-
-   
     
 
     public String getFone1() {
@@ -146,7 +120,5 @@ public class Cliente implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-    
+
 }

@@ -205,35 +205,21 @@ public class ControladorVendaBean {
     }
 
     public String inserirVendaCliente() {
-        try {
+      
              
             vendaCadastro.setItens(listaItens);
             vendaCadastro.setCliente(controleLogin.getClientelogado());
              repVenda.inserir(vendaCadastro);
              listaItens = new ArrayList<>();
             
-           
-             SimpleEmail email = new SimpleEmail();
-                    email.setHostName("smtp.googlemail.com");
-                    email.setSmtpPort(465);
-                    email.setAuthentication("Kleriston.firmino@gmail.com", "cavalo15");
-                    email.setSSLOnConnect(true);
-                    email.setFrom("teste.ads@gmail.com");
-                    email.setSubject("Pedidos");
-                    email.setMsg("Parabéns Pedido Efetuado Com Sucesso." + " Número do Pedido: " + vendaCadastro.getId() + " Valor Total: R$ " + vendaCadastro.getValorTotal());
-                    email.addTo(controleLogin.getClientelogado().getEmail());
-
-                    email.send();
-          
+       
            
                     
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Parabéns! "
                     + " Pedido Efetuado Com Sucesso!"));
             setSomaCarrinho(0);
            
-        } catch (EmailException ex) {
-            Logger.getLogger(ControladorVendaBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
         vendaCadastro.setValorTotal(0);
          controleLogin.setSomaCarrin(0);
         return "VendaCliente.xhtml";

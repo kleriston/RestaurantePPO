@@ -21,9 +21,9 @@ public class RepositorioFuncionario{
         DaoManagerHiber.getInstance().persist(funcionario);
     }
     
-    public Funcionario recuperar(long cpf, String senha){
+    public Funcionario recuperar(String email, String senha){
         Funcionario user = null;
-        List<Funcionario> lista = ((List<Funcionario>)DaoManagerHiber.getInstance().recover("from funcionario where cpf='"+cpf+"' and "
+        List<Funcionario> lista = ((List<Funcionario>)DaoManagerHiber.getInstance().recover("from funcionario where email='"+email+"' and "
                 + "senha='"+senha+"'"));
         
         if(lista.size()>0){

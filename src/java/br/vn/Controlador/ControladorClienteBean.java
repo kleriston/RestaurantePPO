@@ -110,10 +110,10 @@ public class ControladorClienteBean {
         
     }
 
-    public void inserir() {
+    public String inserir() {
         if (this.confirma.equals(this.cliente.getSenha())) {
 
-            try {
+           
                 cliente.setEndereco(endereco);
                 
                 repCliente.inserir(cliente);
@@ -131,28 +131,20 @@ public class ControladorClienteBean {
                 
                 repEnd.inserir(endereco);
                 
-                  SimpleEmail email = new SimpleEmail();
-                    email.setHostName("smtp.googlemail.com");
-                    email.setSmtpPort(465);
-                    email.setAuthentication("Kleriston.firmino@gmail.com", "cavalo15");
-                    email.setSSLOnConnect(true);
-                    email.setFrom("teste.ads@gmail.com");
-                    email.setSubject("O Velho Nordestino");
-                    email.setMsg("Bem Vindo: " + cliente.getNome() + ", Cadastro Efetuado Com Sucesso!");
-                    email.addTo(cliente.getEmail());
-
-                    email.send();
+                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Parabéns! "
+                    + " Cadastro Efetuado Com Sucesso!"));
+           
                 
                 Cliente c = new Cliente();
-            } catch (EmailException ex) {
-                Logger.getLogger(ControladorClienteBean.class.getName()).log(Level.SEVERE, null, ex);
-            }
+          
+               
+          
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Atenção! "
                     + " Senha Incorreta!"));
         }
 
-        
+        return "/index.xhtml";
 
     }
 
@@ -190,8 +182,8 @@ public class ControladorClienteBean {
 
     }
 
-    public Cliente recuperar(long cpf, String senha) throws NoSuchAlgorithmException {
-        return repCliente.recuperar(cpf, senha);
+    public Cliente recuperar(String email, String senha) throws NoSuchAlgorithmException {
+        return repCliente.recuperar(email, senha);
     }
 
     public void acharCliente(long cpf, long rg) {

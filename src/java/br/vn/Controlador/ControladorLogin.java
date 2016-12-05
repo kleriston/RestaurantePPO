@@ -55,9 +55,9 @@ public class ControladorLogin {
 
     }
 
-    public String realizarLogin(long cpf, String senha) throws NoSuchAlgorithmException {
-        logarFuncionario(cpf, senha);
-        logarCliente(cpf, senha);
+    public String realizarLogin(String email, String senha) throws NoSuchAlgorithmException {
+        logarFuncionario(email, senha);
+        logarCliente(email, senha);
 
         if ((funcionarioLogado == null) && (clientelogado == null)) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Atenção! "
@@ -83,8 +83,8 @@ public class ControladorLogin {
         return null;
     }
 
-    public void logarFuncionario(long cpf, String senha) throws NoSuchAlgorithmException {
-        Funcionario u = controleFuncionario.recuperar(cpf, converte(senha));
+    public void logarFuncionario(String email, String senha) throws NoSuchAlgorithmException {
+        Funcionario u = controleFuncionario.recuperar(email, converte(senha));
         if (u != null) {
             FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
@@ -95,8 +95,8 @@ public class ControladorLogin {
         }
     }
 
-    public void logarCliente(long cpf, String senha) throws NoSuchAlgorithmException {
-        Cliente c = controleCliente.recuperar(cpf, converte(senha));
+    public void logarCliente(String email, String senha) throws NoSuchAlgorithmException {
+        Cliente c = controleCliente.recuperar(email, converte(senha));
         if (c != null) {
             FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);

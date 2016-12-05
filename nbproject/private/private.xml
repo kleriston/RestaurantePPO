@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Marcia/Documents/NetBeansProjects/Restaurante/src/java/br/vn/Controlador/ControladorFuncionarioBean.java</file>
+            <file>file:/C:/Users/Kleriston/Documents/NetBeansProjects/RestaurantePPO/src/java/br/vn/Model/Funcionario.java</file>
+            <file>file:/C:/Users/Kleriston/Documents/NetBeansProjects/RestaurantePPO/src/java/br/vn/Controlador/ControladorClienteBean.java</file>
+            <file>file:/C:/Users/Kleriston/Documents/NetBeansProjects/RestaurantePPO/web/MenuPrincipal.xhtml</file>
+            <file>file:/C:/Users/Kleriston/Documents/NetBeansProjects/RestaurantePPO/web/ListarUsuarios.xhtml</file>
+            <file>file:/C:/Users/Kleriston/Documents/NetBeansProjects/RestaurantePPO/src/java/br/vn/Controlador/ControladorVendaBean.java</file>
+            <file>file:/C:/Users/Kleriston/Documents/NetBeansProjects/RestaurantePPO/src/java/br/vn/Model/Cliente.java</file>
+            <file>file:/C:/Users/Kleriston/Documents/NetBeansProjects/RestaurantePPO/src/java/br/vn/Model/Repositorio/RepositorioCliente.java</file>
+            <file>file:/C:/Users/Kleriston/Documents/NetBeansProjects/RestaurantePPO/web/ListarClientes.xhtml</file>
+            <file>file:/C:/Users/Kleriston/Documents/NetBeansProjects/RestaurantePPO/src/java/br/vn/Controlador/ControladorLogin.java</file>
+            <file>file:/C:/Users/Kleriston/Documents/NetBeansProjects/RestaurantePPO/src/java/br/vn/Model/Dao/DaoManagerHiber.java</file>
         </group>
     </open-files>
 </project-private>

@@ -30,15 +30,15 @@ public class Funcionario implements Serializable {
 
     @Column(length = 100)
     private String nome;
-    @Column(length = 100, unique = true)
-    private long cpf;
+   @Column(length = 40, unique = true)
+    private String email;
     @Column
     private String senha;
 
-    public Funcionario(String nome, long cpf, String senha) {
+    public Funcionario(String nome, String email, String senha) {
 
         this.nome = nome;
-        this.cpf = cpf;
+        this.email = email;
         this.senha = senha;
 
     }
@@ -63,13 +63,15 @@ public class Funcionario implements Serializable {
         this.nome = nome;
     }
 
-    public long getCpf() {
-        return cpf;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCpf(long cpf) {
-        this.cpf = cpf;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+  
 
     public String getSenha() {
         return senha;
