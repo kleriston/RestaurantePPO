@@ -119,7 +119,7 @@ public class ControladorClienteBean {
                 repCliente.inserir(cliente);
                 
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Parabéns! "
-                        + " Cliente Cadastrado Com Sucesso!"));
+                        + "Cadastrado Efetuado Com Sucesso!"));
                 
                 Endereco e = new Endereco();
                 endereco.setBairro(e.getBairro());

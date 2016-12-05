@@ -88,8 +88,8 @@
 
                 <h:panelGrid id="idPainelDial" columns="2">
 
-                    <h:outputText value="CPF"></h:outputText>
-                    <p:inputMask value="#{cpf}" mask="999.999.999-99" converter="Conversor"/>
+                    <h:outputText value="Email"></h:outputText>
+                    <p:inputText value="#{email}"/>
 
 
                     <h:outputText value="Senha"></h:outputText>
@@ -97,7 +97,7 @@
 
 
                 </h:panelGrid>
-                <p:commandButton value="Entrar" action="#{controleLogin.realizarLogin(cpf, senha)}"/>
+                <p:commandButton value="Entrar" action="#{controleLogin.realizarLogin(email, senha)}"/>
                 <p:commandButton value="Cadastrar-se" action="CadastrarClientes.xhtml"/>
 
 
