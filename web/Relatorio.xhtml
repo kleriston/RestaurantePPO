@@ -58,9 +58,7 @@
                     <h:outputText value="#{venda.dataVenda}"/>
                 </p:column>
 
-                <p:column headerText="Hora">
-                    <h:outputText value="#{venda.horavenda}"/>
-                </p:column>
+             
 
                 <p:column headerText="Valor">
                     <h:outputText value="#{vendaBean.formatarFloat(venda.valorTotal)}"/>
@@ -68,7 +66,7 @@
 
                 <p:columnGroup type="footer">
                     <p:row>
-                        <p:column colspan="3" style="text-align:right"  footerText="Total: R$: #{vendaBean.formatarFloat(vendaBean.soma)}" />
+                        <p:column colspan="2" style="text-align:right"  footerText="Total: R$: #{vendaBean.formatarFloat(vendaBean.soma)}" />
 
 
                     </p:row>

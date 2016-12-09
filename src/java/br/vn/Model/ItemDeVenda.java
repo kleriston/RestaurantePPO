@@ -26,7 +26,7 @@ public class ItemDeVenda implements Serializable {
     
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     @Column
     private int quantidade;
     @Column
@@ -48,13 +48,14 @@ public class ItemDeVenda implements Serializable {
         this.precoVenda = precoVenda;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
+
 
     public int getQuantidade() {
         return quantidade;

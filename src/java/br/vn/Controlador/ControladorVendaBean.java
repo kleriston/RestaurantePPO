@@ -46,21 +46,19 @@ public class ControladorVendaBean {
     private Cliente cliente = null;
 
     private ControladorLogin controleLogin = null;
-    
+
     private int somaCarrinho = 0;
-    private String teste = "";
-    
-    private String [] listaImagens = new String[3];
-    
- 
+    private String exibeHota = "";
+
+   
+
     public ControladorLogin getControleLogin() {
         return controleLogin;
     }
 
     public ControladorVendaBean() {
-        this.teste = teste;
-       
         
+
         repVenda = new RepositorioVenda();
         vendaCadastro = new Venda();
         this.cliente = new Cliente();
@@ -74,9 +72,7 @@ public class ControladorVendaBean {
         }
         filtro = new Filtro();
         listadeVendas = new ArrayList<>();
-        
 
-     
     }
 
     public double getSoma() {
@@ -122,10 +118,10 @@ public class ControladorVendaBean {
     }
 
     public void adicionar(Produto produto) {
-        
-  controleLogin.setSomaCarrin(controleLogin.getSomaCarrin()+1);
+
+        controleLogin.setSomaCarrin(controleLogin.getSomaCarrin() + 1);
         int posicaoEncontrada = -1;
-        setSomaCarrinho(somaCarrinho +1);
+        setSomaCarrinho(somaCarrinho + 1);
 
         for (int i = 0; i < listaItens.size() && posicaoEncontrada < 0; i++) {
             ItemDeVenda temp = listaItens.get(i);
@@ -137,7 +133,6 @@ public class ControladorVendaBean {
 
         ItemDeVenda item = new ItemDeVenda();
         item.setProduto(produto);
-        
 
         if (posicaoEncontrada < 0) {
             item.setQuantidade(1);
@@ -151,17 +146,16 @@ public class ControladorVendaBean {
 
             listaItens.set(posicaoEncontrada, item);
         }
-   
-    
+
         vendaCadastro.setValorTotal(item.getProduto().getPreço() + vendaCadastro.getValorTotal());
-  
+
     }
 
     public void remover(ItemDeVenda item) {
 
-         controleLogin.setSomaCarrin(controleLogin.getSomaCarrin()- item.getQuantidade());
+        controleLogin.setSomaCarrin(controleLogin.getSomaCarrin() - item.getQuantidade());
         int posicaoEncontrada = -1;
-          setSomaCarrinho(somaCarrinho - item.getQuantidade());
+        setSomaCarrinho(somaCarrinho - item.getQuantidade());
 
         for (int i = 0; i < listaItens.size() && posicaoEncontrada < 0; i++) {
             ItemDeVenda temp = listaItens.get(i);
@@ -173,7 +167,6 @@ public class ControladorVendaBean {
         if (posicaoEncontrada > -1) {
             listaItens.remove(posicaoEncontrada);
 
-          
             vendaCadastro.setValorTotal(vendaCadastro.getValorTotal() - item.getPrecoVenda());
         }
     }
@@ -181,11 +174,11 @@ public class ControladorVendaBean {
     public void carregarDadosVenda() throws ParseException {
 
         SimpleDateFormat d = new SimpleDateFormat("HH:mm:ss");
-        
-        
+
         Date hora = new Date();
 
-        vendaCadastro.setHoravenda(d.format(hora));
+        setExibeHota(d.format(hora));
+      
 
         Date data = new Date();
 
@@ -194,45 +187,38 @@ public class ControladorVendaBean {
     }
 
     public String inserirVendaCliente() {
-      
-             
-            vendaCadastro.setItens(listaItens);
-            vendaCadastro.setCliente(controleLogin.getClientelogado());
-             repVenda.inserir(vendaCadastro);
-             listaItens = new ArrayList<>();
-            
-       
-           
-                    
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Parabéns! "
-                    + " Pedido Efetuado Com Sucesso!"));
-            setSomaCarrinho(0);
-           
-      
+
+        vendaCadastro.setItens(listaItens);
+        vendaCadastro.setCliente(controleLogin.getClientelogado());
+        repVenda.inserir(vendaCadastro);
+        listaItens = new ArrayList<>();
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Parabéns! "
+                + " Pedido Efetuado Com Sucesso!"));
+        setSomaCarrinho(0);
+
         vendaCadastro.setValorTotal(0);
-         controleLogin.setSomaCarrin(0);
+        controleLogin.setSomaCarrin(0);
         return "VendaCliente.xhtml";
     }
 
-     public String inserirVendaBalcao(){
-       vendaCadastro.setItens(listaItens);
-       vendaCadastro.setMesa("Balcão");
-       
-      repVenda.inserir(vendaCadastro);
-       
-       vendaCadastro = new Venda();
-       listaItens = new ArrayList<>();
-       cliente = new Cliente();
- 
-             vendaCadastro = new Venda();
-       
-      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Atenção! " 
-             +" Venda Efetuada Com Sucesso!"));
-       vendaCadastro.setValorTotal(0);
-      return "VendaCadastro.xhtml";
-   }
-    
-    
+    public String inserirVendaBalcao() {
+        vendaCadastro.setItens(listaItens);
+
+        repVenda.inserir(vendaCadastro);
+
+        vendaCadastro = new Venda();
+        listaItens = new ArrayList<>();
+        cliente = new Cliente();
+
+        vendaCadastro = new Venda();
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Atenção! "
+                + " Venda Efetuada Com Sucesso!"));
+        vendaCadastro.setValorTotal(0);
+        return "VendaCadastro.xhtml";
+    }
+
     public List<Venda> recuperarTodas() {
         List<Venda> ref = repVenda.recuperaTodos();
         List<Venda> clone = new ArrayList<>();
@@ -245,7 +231,7 @@ public class ControladorVendaBean {
             vnovo.setDataVenda(v.getDataVenda());
             vnovo.setMesa(v.getMesa());
             vnovo.setValorTotal(v.getValorTotal());
-            vnovo.setHoravenda(v.getHoravenda());
+            
             vnovo.setCliente(v.getCliente());
 
             for (ItemDeVenda iv : v.getItens()) {
@@ -319,7 +305,7 @@ public class ControladorVendaBean {
             vnovo.setDataVenda(v.getDataVenda());
             vnovo.setMesa(v.getMesa());
             vnovo.setValorTotal(v.getValorTotal());
-            vnovo.setHoravenda(v.getHoravenda());
+            
             vnovo.setCliente(v.getCliente());
 
             for (ItemDeVenda iv : v.getItens()) {
@@ -369,37 +355,25 @@ public class ControladorVendaBean {
         this.somaCarrinho = somaCarrinho;
     }
 
-   
-public String formatarFloat(double numero){
-  String retorno = "";
-  DecimalFormat formatter = new DecimalFormat("#0.00");
-  try{
-    retorno = formatter.format(numero);
-  }catch(Exception ex){
-    System.err.println("Erro ao formatar numero: " + ex);
-  }
-  return retorno;
-}
-
-    public String getTeste() {
-        return teste;
+    public String formatarFloat(double numero) {
+        String retorno = "";
+        DecimalFormat formatter = new DecimalFormat("#0.00");
+        try {
+            retorno = formatter.format(numero);
+        } catch (Exception ex) {
+            System.err.println("Erro ao formatar numero: " + ex);
+        }
+        return retorno;
     }
 
-    public void setTeste(String teste) {
-        this.teste = teste;
+    public String getExibeHota() {
+        return exibeHota;
     }
 
-    public String[] getListaImagens() {
-        return listaImagens;
-    }
-
-    public void setListaImagens(String[] listaImagens) {
-        this.listaImagens = listaImagens;
+    public void setExibeHota(String exibeHota) {
+        this.exibeHota = exibeHota;
     }
 
 
-    
 
-    
-    
 }

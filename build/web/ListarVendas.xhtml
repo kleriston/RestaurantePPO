@@ -26,25 +26,20 @@
                 <h:outputText value="#{vendaBean.formatarFloat(venda.valorTotal)}"/>
                 </p:column>
                 
-                <p:column headerText="Data" filterBy="#{venda.dataVenda}">
+                <p:column headerText="Data">
                 <h:outputText value="#{venda.dataVenda}"/>
                 </p:column>
                
-                <p:column headerText="Hora">
-                    <h:outputText value="#{venda.horavenda}"/>
-                </p:column>
+             
                 
-                <p:column headerText="Mesa" filterBy="#{venda.mesa}">
+                <p:column headerText="Mesa">
                     <h:outputText value="#{venda.mesa}"/>
                 </p:column>
                 
                  <p:column headerText="Cliente">
                      <h:outputText value="#{venda.cliente.nome}"/>
                 </p:column>
-                
-                   <p:column headerText="CPF">
-                       <h:outputText value="#{venda.cliente.cpf}"/>
-                </p:column>
+           
                 
                 <p:column headerText="Operações">
                     

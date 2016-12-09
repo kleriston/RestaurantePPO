@@ -20,6 +20,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,18 +35,16 @@ public class Venda implements Serializable {
     
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     
     @Column(name="data_venda")
     @Temporal(value= TemporalType.DATE)
     private Date dataVenda;
     @Column
     private double valorTotal;
-    @Column
+   
     private String mesa;
-    @Column
-    private String horavenda;
-    
+  
     @OneToMany(cascade = CascadeType.ALL)
     
     private List<ItemDeVenda> itens; 
@@ -67,23 +66,25 @@ public class Venda implements Serializable {
 
    
     
-    public Venda( Date dataVenda, List<ItemDeVenda> itens, double valorTotal, String mesa, String horavenda,
+    public Venda( Date dataVenda, List<ItemDeVenda> itens, double valorTotal, String mesa,
     Cliente cliente) {
         this.dataVenda = dataVenda;
         this.itens = itens;
         this.valorTotal = valorTotal;
         this.mesa = mesa;
-        this.horavenda = horavenda;
+      
         this.cliente = cliente;
     }
-    
-    public int getId() {
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
+    
+ 
 
     public Date getDataVenda() {
         return dataVenda;
@@ -124,18 +125,11 @@ public class Venda implements Serializable {
         this.mesa = mesa;
     }
 
-    public String getHoravenda() {
-        return horavenda;
-    }
 
-    public void setHoravenda(String horavenda) {
-        this.horavenda = horavenda;
-    }
 
-  
-    
-    
-    
+
+
+ 
     public void addItemVenda(ItemDeVenda itemDeVenda){
         this.itens.add(itemDeVenda);
     }

@@ -27,10 +27,10 @@ public class Produto  implements Serializable{
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @Column(length = 6, unique = true)
-    private int codigo;
+    private long codigo;
     @Column(length = 40)
     private String nome;
     @Column(length = 5)
@@ -45,7 +45,7 @@ public class Produto  implements Serializable{
     private String foto;
   
 
-    public Produto(int codigo, String nome, double preço, String descricao, String foto) {
+    public Produto(long codigo, String nome, double preço, String descricao, String foto) {
       
         this.nome = nome;
         this.preço = preço;
@@ -61,22 +61,24 @@ public class Produto  implements Serializable{
         
     }
 
-
-      public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
-    
-    public void setCodigo(int codigo) {
+
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
+
+
+
 
     public String getNome() {
         return nome;

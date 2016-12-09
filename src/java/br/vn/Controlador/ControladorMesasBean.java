@@ -47,6 +47,7 @@ public class ControladorMesasBean {
         vendaCadastro = new Venda();
         listaDeItens =new ArrayList<>();
         this.repVenda = new RepositorioVenda();
+        
       
     }
 
@@ -142,6 +143,7 @@ public class ControladorMesasBean {
                      
 
             repMesa.altera(mesas);
+              vendaCadastro.setItens(mesas.getListaItens());
      
              
         }
@@ -180,11 +182,13 @@ public class ControladorMesasBean {
     
     public String inserirVendaMesa(){
 
+       
+   
+      vendaCadastro.setItens(listaDeItens);
+      vendaCadastro.setMesa(mesas.getNome());
+      vendaCadastro.setValorTotal(mesas.getValorTotal());
+       vendaCadastro.setItens(mesas.getListaItens());
 
-        vendaCadastro.setItens(listaDeItens);
-        vendaCadastro.setMesa(mesas.getNome());
-        vendaCadastro.setValorTotal(mesas.getValorTotal());
-        vendaCadastro.setItens(mesas.getListaItens());
         repVenda.inserir(vendaCadastro);
         
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Atenção! " 
