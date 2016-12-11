@@ -59,7 +59,7 @@ public class RepositorioProduto {
             }else{
                 
           
-        lista = (List<Produto>) DaoManagerHiber.getInstance().recover("from produto where nome = " + "'" + busca+"'");
+        lista = (List<Produto>) DaoManagerHiber.getInstance().recover("from produto where nome like" + "%'" + busca+"$'");
             }
             return lista;
     }
