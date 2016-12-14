@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
       
-        <ui:include src="MenuCliente.xhtml"/>
+        <ui:include src="MenuCliente.xhtml" id="menu"/>
        
         <h:form id="FormularioVenda">
            
@@ -94,7 +94,7 @@
                     <h:outputText value="#{vendaBean.exibeHota}"/>
 
                     <h:outputText value="Valor Total: "/> 
-                    <h:outputText id="idval" value="#{vendaBean.vendaCadastro.valorTotal}"/>
+                    <h:outputText id="idval" value="#{vendaBean.formatarFloat(vendaBean.vendaCadastro.valorTotal)}"/>
 
                  
                 </h:panelGrid>
@@ -103,7 +103,7 @@
 
                     <p:commandButton value="Finalizar" actionListener="#{vendaBean.inserirVendaCliente()}"
                                      oncomplete="PF('widDial').hide();"
-                                     update=":FormularioVenda :FormularioValor"/>
+                                     onclick="window.location.reload(continue; );"/>
 
                     <p:commandButton value="Voltar" oncomplete="PF('widDial').hide();"/>
                 </h:panelGrid>

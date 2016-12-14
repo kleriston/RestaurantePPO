@@ -48,8 +48,8 @@
                     <h:panelGrid columns="1" style="width:100%">
                         <p:graphicImage url="#{produto.foto}"  height="130" width="220"/>
 
-                        <h:outputText value="Valor Unitário: R$: #{ProdutoBean.formatarFloat(produto.preço)}" style="background-color:#GGG;color:#1E90FF;" />
-                        <h:outputText value="#{produto.nome}" style="background-color:#GGG;color:#1E90FF;"  />
+                        <h:outputText value="Valor Unitário: R$: #{ProdutoBean.formatarFloat(produto.preço)}"  />
+                        <h:outputText value="#{produto.nome}"   />
 
                         <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
                             <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />

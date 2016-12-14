@@ -49,6 +49,7 @@ public class ControladorVendaBean {
 
     private int somaCarrinho = 0;
     private String exibeHota = "";
+    private double exibirValorCarrinho;
 
    
 
@@ -149,6 +150,7 @@ public class ControladorVendaBean {
 
         vendaCadastro.setValorTotal(item.getProduto().getPreço() + vendaCadastro.getValorTotal());
 
+        exibirValorCarrinho = vendaCadastro.getValorTotal();
     }
 
     public void remover(ItemDeVenda item) {
@@ -193,13 +195,15 @@ public class ControladorVendaBean {
         repVenda.inserir(vendaCadastro);
         listaItens = new ArrayList<>();
 
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Parabéns! "
-                + " Pedido Efetuado Com Sucesso!"));
-        setSomaCarrinho(0);
+         setSomaCarrinho(0);
 
         vendaCadastro.setValorTotal(0);
         controleLogin.setSomaCarrin(0);
-        return "VendaCliente.xhtml";
+        setExibirValorCarrinho(0);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Parabéns! "
+                + " Pedido Efetuado Com Sucesso!"));
+   
+        return "/VendaCliente.xhtml";
     }
 
     public String inserirVendaBalcao() {
@@ -374,6 +378,15 @@ public class ControladorVendaBean {
         this.exibeHota = exibeHota;
     }
 
+    public double getExibirValorCarrinho() {
+        return exibirValorCarrinho;
+    }
+
+    public void setExibirValorCarrinho(double exibirValorCarrinho) {
+        this.exibirValorCarrinho = exibirValorCarrinho;
+    }
+
+    
 
 
 }

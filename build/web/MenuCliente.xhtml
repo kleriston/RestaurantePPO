@@ -22,7 +22,7 @@
             <h:form id="formularioMenu">
 
                 <p:menubar>
-                    <p:menuitem value="Início" outcome="VendaCliente.xhtml"/>  
+                    <p:menuitem value="Início" outcome="VendaCliente.xhtml" />  
 
 
                     <p:submenu label="Contato">
@@ -38,7 +38,7 @@
                       
                        
                       
-                      <p:menuitem value="Carrinho: R$: #{vendaBean.formatarFloat(vendaBean.vendaCadastro.valorTotal)}"  outcome="Carrinho.xhtml" style="position: absolute; right: 300px"/>
+                      <p:menuitem value="Carrinho: R$: #{vendaBean.formatarFloat(vendaBean.exibirValorCarrinho)}"  outcome="Carrinho.xhtml" style="position: absolute; right: 300px"/>
                       
                       
                     <p:submenu label="#{controleLogin.clientelogado.nome}" style="position: absolute; right: 0px">
